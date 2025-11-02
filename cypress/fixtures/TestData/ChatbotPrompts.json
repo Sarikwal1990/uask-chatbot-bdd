@@ -1,0 +1,14 @@
+{
+  "aiChatbotTests": [
+    {
+      "language": "en",
+      "prompt": "How to get an Emirates ID?",
+      "keywords": ["emirates id", "renew", "uae pass"]
+    },
+    {
+      "language": "en",
+      "prompt": "How to renew my Emirates ID?",
+      "keywords": ["emirates id", "renew", "uae pass"]
+    }
+  ]
+}

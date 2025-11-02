@@ -1,0 +1,51 @@
+
+    <html>
+    <head>
+      <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top:20px; }
+        td, th { border:1px solid #ddd; padding:8px; text-align:left; }
+        tr.FAIL { background:#ffe5e5; }
+        tr.PASS { background:#e8ffe8; }
+        .chart {height:400px;}
+      </style>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+      <h2>AI Chatbot Test Report</h2>
+      <canvas id="pieChart" class="chart"></canvas>
+      <table>
+        <tr><th>Prompt</th><th>Score</th><th>Status</th><th>Matched Keywords</th><th>Screenshot</th></tr>
+        
+      <tr class="PASS">
+        <td>How to get an Emirates ID?</td>
+        <td>33.00%%</td>
+        <td>PASS</td>
+        <td>emirates id</td>
+        <td>-</td>
+      </tr>
+    
+      <tr class="PASS">
+        <td>How to renew my Emirates ID?</td>
+        <td>33.00%%</td>
+        <td>PASS</td>
+        <td>emirates id</td>
+        <td>-</td>
+      </tr>
+    
+      </table>
+      <script>
+        const ctx = document.getElementById("pieChart");
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["PASS", "FAIL"],
+            datasets: [{
+              data: [2, 0]
+            }]
+          }
+        });
+      </script>
+    </body>
+    </html>
+    

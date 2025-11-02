@@ -1,0 +1,25 @@
+{
+  "name": "uask-chatbot-bdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.2.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.7",
+    "@shelex/cypress-allure-plugin": "^2.41.2",
+    "allure-commandline": "^2.34.1",
+    "cypress": "^15.5.0",
+    "esbuild": "^0.25.12"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/integration/Testcases/BDD/StepDefinitions/GlobalStepDefinitions/*.js"
+    ]
+  }
+}

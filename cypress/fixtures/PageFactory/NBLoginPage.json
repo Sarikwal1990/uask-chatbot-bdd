@@ -1,0 +1,6 @@
+{
+    "Email Login Button": ".w-full.flex.flex-col.gap-2 button:nth-child(2)",
+    "Email Textbox": "#email",
+    "Password Textbox": "#password",
+    "Login Button": ".w-full.text-center button[type='submit']"
+}
