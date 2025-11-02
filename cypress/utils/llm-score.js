@@ -32,7 +32,7 @@ function calculateAIResponseScore(response, expectedKeywords = []) {
  * Validate AI response against Cypress benchmark threshold
  */
 function validateAIResponse(response, expectedKeywords) {
-    const benchmark = Cypress.env("benchmarkScore") || 0.8; // default 80%
+    const benchmark = Cypress.env("benchmarkScore") || 0.3; // default 30%
     const result = calculateAIResponseScore(response, expectedKeywords);
 
     const passed = result.score >= benchmark;

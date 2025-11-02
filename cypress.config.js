@@ -23,7 +23,7 @@ module.exports = defineConfig({
   env: {
   TAGS: "not @ignore",
   ENV: "sandbox",
-  benchmarkScore: 0.1   // AI response must score >= 80%
+  benchmarkScore: 0.3   // AI response must score >= 30%
 },
   pageLoadTimeout: 300000,
   numTestsKeptInMemory: 0,

@@ -7,8 +7,18 @@
     },
     {
       "language": "en",
-      "prompt": "How to renew my Emirates ID?",
-      "keywords": ["emirates id", "renew", "uae pass"]
+      "prompt": "How to get a UAE Pass?",
+      "keywords": ["uae pass", "get", "emirates id"]
+    },
+    {
+      "language": "en",
+      "prompt": "What is the process to update my mobile number in Emirates ID?",
+      "keywords": ["update", "mobile number", "emirates id"]
+    },
+    {
+      "language": "en",
+      "prompt": "How can I check the status of my Emirates ID application?",
+      "keywords": ["check", "status", "emirates id", "application"]
     }
   ]
 }
