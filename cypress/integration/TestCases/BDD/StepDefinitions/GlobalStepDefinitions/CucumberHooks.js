@@ -53,7 +53,7 @@ After(() => {
   if (!done) {
     done = true;
     cy.writeAIReport().then(() => {
-      cy.generateAIHtmlReport();
+      cy.generateAIChatReport();
     });
   }
 });

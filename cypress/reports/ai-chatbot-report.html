@@ -3,103 +3,76 @@
     <head>
       <meta charset="UTF-8">
       <title>AI Chatbot Test Report</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f8f9fa; }
-        h2 { text-align: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-        td, th { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
-        tr.FAIL { background: #ffe5e5; }
-        tr.PASS { background: #e8ffe8; }
-        th { background: #007bff; color: white; }
-        .chart-container {
-          width: 300px;
-          height: 300px;
-          margin: 20px auto;
-          position: relative;
-        }
-        .summary {
-          text-align: center;
-          font-size: 16px;
-          margin-bottom: 10px;
-        }
-      </style>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+      <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+        th { background: #007bff; color: white; }
+        tr.PASS { background: #e8ffe8; }
+        tr.FAIL { background: #ffe5e5; }
+        #pieContainer { width: 300px; height: 300px; margin: 0 auto; } /* smaller pie chart */
+      </style>
     </head>
     <body>
       <h2>AI Chatbot Test Report</h2>
 
-      <div class="summary">
-        <strong>Total Tests:</strong> 4 |
-        <span style="color:#4caf50;">PASS: 4 (100.0%)</span> |
-        <span style="color:#f44336;">FAIL: 0 (0.0%)</span>
-      </div>
-
-      <div class="chart-container">
+      <div id="pieContainer">
         <canvas id="pieChart"></canvas>
       </div>
 
       <table>
         <tr>
           <th>Prompt</th>
-          <th>Score</th>
-          <th>Status</th>
+          <th>Bot Response</th>
           <th>Expected Keywords</th>
           <th>Matched Keywords ✅</th>
           <th>Missed Keywords ❌</th>
+          <th>Score</th>
+          <th>Status</th>
           <th>Screenshot</th>
         </tr>
         
         <tr class="PASS">
           <td>How to get an Emirates ID?</td>
-          <td>33.00%</td>
+          <td>Step-by-Step Guide: How to Get an Emirates ID  The Emirates ID is a mandatory identification card for all UAE citizens and residents. It is essential for accessing government services, opening bank accounts, signing contracts, and many other daily activities in the UAE. Below is a clear, step-by-step guide to obtaining your Emirates ID, based on the latest official and expert sources.  1. Ensure You Have a Valid UAE Residence Visa   You must have a valid UAE residence visa before applying for an Emirates ID. This is a strict requirement for expatriates and residents2.  2. Gather Required Documents  The documents you need depend on your status:  Applicant Type  Required Documents   UAE Nationals Passport, Family Book (Khulasat Al Qaid), Birth Certificate (for first-time applicants), Photo  GCC Nationals Valid Passport, GCC ID Card, Proof of Residency, Photo  Expatriate Residents Valid Passport with Residence Permit, Proof of Residence (e.g., tenancy contract, utility bill), Photo  <span style="color:green;font-weight:bold">Children</span> (<15 yrs) Birth Certificate, Passports of both parents, Child’s Photo     All documents should be original and valid35.  3. Choose Your Application Method  You can apply for an Emirates ID in one of the following ways:   Online:  Through the Federal Authority for Identity, Citizenship, Customs and Ports Security (ICP) website or mobile app.  Typing Centre:  Visit an accredited typing centre or Amer Centre, where staff will assist you with the application form1234.  Customer Happiness Centre:  For urgent or special cases, visit an ICP Customer Happiness Centre directly.  4. Complete the Application Form   Fill out the Emirates ID application form with accurate information.  If applying at a typing centre, staff will assist you.  If applying online, follow the instructions on the ICP website or app124.  5. Pay the Application Fees   Fees vary depending on the validity period (typically 1, 2, or 3 years).  Payment can be made online or at the typing centre.  Additional fees apply for urgent processing (Fawri service)13.  6. Provide Biometric Data   First-time applicants (and sometimes renewals) must visit an ICP service centre to provide fingerprints and have a photograph taken.  You will receive an appointment or instructions after submitting your application124.  7. Track Your Application   Use your application number to track the status online via the ICP website or app.  You will receive SMS notifications about your application progress and collection details124.  8. Collect Your Emirates ID   Once approved, you will be notified by SMS.  Collect your Emirates ID from the designated Emirates Post office or as instructed in your notification.  You must collect the card within 90 days of notification4.  9. Special Notes   For urgent issuance (within 24 hours), use the Fawri service at ICP Customer Happiness Centres (available for UAE and GCC nationals; expatriates only for replacement cases)1.  Always carry your Emirates ID; it is illegal for others (including employers) to retain your card14.  Report any loss, theft, or damage to ICP immediately and apply for a replacement1.  Summary Table  Step  Description   1. Residence Visa Ensure you have a valid UAE residence visa  2. Gather Documents Collect required original documents  3. Application Method Apply online, at a typing centre, or ICP centre  4. Fill Application Complete the Emirates ID application form  5. Pay Fees Pay the required fees (varies by validity and urgency)  6. Biometrics Visit ICP centre for fingerprints and photo (if required)  7. Track Application Monitor status via ICP website/app and await SMS notification  8. Collect ID Pick up your Emirates ID from the designated Emirates Post office    References  1: UAE Government Official Guide – Emirates ID Process & Requirements 
+2: First Abu Dhabi Bank Expat Guide – Emirates ID Application Steps 
+3: Amer Centre – Required Documents & Application Steps 
+4: Shuraa – Emirates ID Application & Collection Process 
+5: Shuraa – Emirates ID Requirements & Renewal   If you need more details about a specific step or have a unique situation (such as applying for a child or urgent processing), please let me know!    Sources  Ask  Explain    </td>
+          <td>emirates id, renew, uae pass, Adults, Children</td>
+          <td>renew, Children</td>
+          <td>emirates id, uae pass, Adults</td>
+          <td>67.70%</td>
           <td>PASS</td>
-          <td>emirates id, renew, uae pass</td>
-          <td><span style="color:#2e7d32;">emirates id</span></td>
-          <td><span style="color:#c62828;">renew, uae pass</span></td>
           <td>-</td>
         </tr>
       
         <tr class="PASS">
-          <td>How to get a UAE Pass?</td>
-          <td>67.00%</td>
-          <td>PASS</td>
-          <td>uae pass, get, emirates id</td>
-          <td><span style="color:#2e7d32;">get, emirates id</span></td>
-          <td><span style="color:#c62828;">uae pass</span></td>
+          <td>كيف يمكنني تجديد بطاقة الهوية الإماراتية؟</td>
+          <td>Step-by-Step Guide: How to Get an Emirates ID  The Emirates ID is a mandatory identification card for all UAE citizens and residents. It is essential for accessing government services, opening bank accounts, signing contracts, and many other daily activities in the UAE. Below is a clear, step-by-step guide to obtaining your Emirates ID, based on the latest official and expert sources.  1. Ensure You Have a Valid UAE Residence Visa   You must have a valid UAE residence visa before applying for an Emirates ID. This is a strict requirement for expatriates and residents2.  2. Gather Required Documents  The documents you need depend on your status:  Applicant Type  Required Documents   UAE Nationals Passport, Family Book (Khulasat Al Qaid), Birth Certificate (for first-time applicants), Photo  GCC Nationals Valid Passport, GCC ID Card, Proof of Residency, Photo  Expatriate Residents Valid Passport with Residence Permit, Proof of Residence (e.g., tenancy contract, utility bill), Photo  Children (<15 yrs) Birth Certificate, Passports of both parents, Child’s Photo     All documents should be original and valid35.  3. Choose Your Application Method  You can apply for an Emirates ID in one of the following ways:   Online:  Through the Federal Authority for Identity, Citizenship, Customs and Ports Security (ICP) website or mobile app.  Typing Centre:  Visit an accredited typing centre or Amer Centre, where staff will assist you with the application form1234.  Customer Happiness Centre:  For urgent or special cases, visit an ICP Customer Happiness Centre directly.  4. Complete the Application Form   Fill out the Emirates ID application form with accurate information.  If applying at a typing centre, staff will assist you.  If applying online, follow the instructions on the ICP website or app124.  5. Pay the Application Fees   Fees vary depending on the validity period (typically 1, 2, or 3 years).  Payment can be made online or at the typing centre.  Additional fees apply for urgent processing (Fawri service)13.  6. Provide Biometric Data   First-time applicants (and sometimes renewals) must visit an ICP service centre to provide fingerprints and have a photograph taken.  You will receive an appointment or instructions after submitting your application124.  7. Track Your Application   Use your application number to track the status online via the ICP website or app.  You will receive SMS notifications about your application progress and collection details124.  8. Collect Your Emirates ID   Once approved, you will be notified by SMS.  Collect your Emirates ID from the designated Emirates Post office or as instructed in your notification.  You must collect the card within 90 days of notification4.  9. Special Notes   For urgent issuance (within 24 hours), use the Fawri service at ICP Customer Happiness Centres (available for UAE and GCC nationals; expatriates only for replacement cases)1.  Always carry your Emirates ID; it is illegal for others (including employers) to retain your card14.  Report any loss, theft, or damage to ICP immediately and apply for a replacement1.  Summary Table  Step  Description   1. Residence Visa Ensure you have a valid UAE residence visa  2. Gather Documents Collect required original documents  3. Application Method Apply online, at a typing centre, or ICP centre  4. Fill Application Complete the Emirates ID application form  5. Pay Fees Pay the required fees (varies by validity and urgency)  6. Biometrics Visit ICP centre for fingerprints and photo (if required)  7. Track Application Monitor status via ICP website/app and await SMS notification  8. Collect ID Pick up your Emirates ID from the designated Emirates Post office    References  1: UAE Government Official Guide – Emirates ID Process & Requirements 
+2: First Abu Dhabi Bank Expat Guide – Emirates ID Application Steps 
+3: Amer Centre – Required Documents & Application Steps 
+4: Shuraa – Emirates ID Application & Collection Process 
+5: Shuraa – Emirates ID Requirements & Renewal   If you need more details about a specific step or have a unique situation (such as applying for a child or urgent processing), please let me know!    Sources  Ask  Explain    </td>
+          <td>تجديد, بطاقة الهوية, الإمارات</td>
           <td>-</td>
-        </tr>
-      
-        <tr class="PASS">
-          <td>What is the process to update my mobile number in Emirates ID?</td>
-          <td>67.00%</td>
+          <td>تجديد, بطاقة الهوية, الإمارات</td>
+          <td>43.30%</td>
           <td>PASS</td>
-          <td>update, mobile number, emirates id</td>
-          <td><span style="color:#2e7d32;">update, emirates id</span></td>
-          <td><span style="color:#c62828;">mobile number</span></td>
-          <td>-</td>
-        </tr>
-      
-        <tr class="PASS">
-          <td>How can I check the status of my Emirates ID application?</td>
-          <td>75.00%</td>
-          <td>PASS</td>
-          <td>check, status, emirates id, application</td>
-          <td><span style="color:#2e7d32;">status, emirates id, application</span></td>
-          <td><span style="color:#c62828;">check</span></td>
           <td>-</td>
         </tr>
       
       </table>
 
       <script>
-        const ctx = document.getElementById("pieChart");
+        const ctx = document.getElementById('pieChart').getContext('2d');
         new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ["PASS", "FAIL"],
+            labels: ['PASS', 'FAIL'],
             datasets: [{
-              data: [4, 0],
+              data: [2, 0],
               backgroundColor: ['#4caf50', '#f44336']
             }]
           },
@@ -107,19 +80,9 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: { position: 'bottom' },
-              datalabels: {
-                color: '#fff',
-                font: { weight: 'bold', size: 14 },
-                formatter: (value, ctx) => {
-                  const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                  const percentage = total ? ((value / total) * 100).toFixed(1) + "%" : "0%";
-                  return percentage;
-                }
-              }
+              legend: { position: 'bottom' }
             }
-          },
-          plugins: [ChartDataLabels]
+          }
         });
       </script>
     </body>

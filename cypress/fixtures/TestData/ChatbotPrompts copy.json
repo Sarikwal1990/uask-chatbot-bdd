@@ -6,10 +6,10 @@
       "keywords": ["emirates id", "renew", "uae pass"]
     },
     {
-  "prompt": "How to get a UAE Pass?",
-  "expectedMeaning": "User wants a step-by-step guide to obtain UAE Pass, including app download, registration, identity verification, and activation.",
-  "keywords": ["uae pass", "download app", "register", "verify identity"]
-  },
+      "prompt": "How to get a UAE Pass?",
+      "expectedMeaning": "User wants guidance to obtain a UAE Pass",
+      "keywords": ["uae pass", "get", "emirates id"]
+    },
     {
       "prompt": "What is the process to update my mobile number in Emirates ID?",
       "expectedMeaning": "User wants to update mobile number linked with Emirates ID",

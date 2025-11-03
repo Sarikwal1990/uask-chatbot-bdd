@@ -6,8 +6,6 @@ const {
   Then,
 } = require("@badeball/cypress-cucumber-preprocessor");
 
-const { validateAIResponse } = require("../../../../../utils/llm-score");
-
 //Importing and renaming the variables from hook.js
 const { testDataMap, pageDataMap } = require("./hooks");
 
@@ -17,59 +15,57 @@ Then(/^Verify that URL contains "([^"]*)"$/, function (value) {
   cy.url({ timeout: 20000 }).should("include", value);
 });
 
-//Run all AI Prompts from test data
+// Run AI prompt tests from test data
 Then("Run all AI prompt tests from test data", () => {
-  // Load fixture and alias it
+  const benchmark = Cypress.env("benchmarkScore"); // single source of truth
+
   cy.fixture("TestData/ChatbotPrompts.json").as("chatData");
 
-  // Get the fixture data
   cy.get("@chatData").then((data) => {
     const testPrompts = data.aiChatbotTests;
 
-    // Validate fixture structure
-    if (!Array.isArray(testPrompts)) {
-      throw new Error(
-        `aiChatbotTests is not an array. Check your fixture. Found: ${typeof testPrompts}`
-      );
-    }
-
-    // Iterate over each test case
     cy.wrap(testPrompts).each((testCase) => {
-      cy.log(`Running prompt: "${testCase.prompt}" (${testCase.language})`);
+      cy.log(`Running prompt: "${testCase.prompt}"`);
 
-      // Ensure chat input is visible
       cy.get("#chat-input").should("be.visible").clear().type(`${testCase.prompt}{enter}`);
-      cy.wait(50000)
+      cy.wait(50000); // wait for bot response
 
-      // Capture the latest response and validate
       cy.get('#response-content-container', { timeout: 90000 })
-  .should('exist')
-  .scrollIntoView()
-  .should('be.visible')
-  .invoke("text")
-  .then((actualResponse) => {
-  const result = validateAIResponse(actualResponse, testCase.keywords);
+        .should('exist')
+        .scrollIntoView()
+        .should('be.visible')
+        .invoke("text")
+        .then((actualResponse) => {
 
-  const record = {
-    prompt: testCase.prompt,
-    expectedKeywords: testCase.keywords,
-    actualResponse: actualResponse,
-    matchedKeywords: result.matchedKeywords || [],
-    score: (result.score * 100).toFixed(2) + "%",
-    status: result.passed ? "PASS" : "FAIL",
-    screenshot: result.passed ? null : `screenshots/${Cypress.spec.name}/${testCase.prompt}.png`
-  };
+          cy.checkAIResponse(testCase.expectedMeaning, actualResponse, testCase.keywords)
+            .then(score => {
+              const numericScore = Number((score.final_score * 100).toFixed(2));
 
-  cy.storeAIResult(record);
+              const record = {
+                prompt: testCase.prompt,
+                expectedKeywords: testCase.keywords,
+                actualResponse,
+                matchedKeywords: score.matchedKeywords || [],
+                score: numericScore,                     // numeric
+                status: numericScore >= benchmark * 100 ? "PASS" : "FAIL",
+                screenshot: numericScore >= benchmark * 100 ? null : `screenshots/${Cypress.spec.name}/${testCase.prompt}.png`
+              };
 
-  expect(result.passed, `AI response for prompt: "${testCase.prompt}"`).to.be.true;
-  if (!result.passed) {
-    cy.screenshot(testCase.prompt.replace(/[^a-zA-Z0-9]/g, "_"));
-  }
-});
+              cy.storeAIResult(record);
 
-      // Small wait to allow UI to process next prompt
+              // Assert
+              expect(score.final_score >= benchmark, `AI response for prompt: "${testCase.prompt}"`).to.be.true;
+
+              if (numericScore < benchmark * 100) {
+                cy.screenshot(testCase.prompt.replace(/[^a-zA-Z0-9]/g, "_"));
+              }
+            });
+        });
+
       cy.wait(1000);
     });
   });
 });
+
+
+
