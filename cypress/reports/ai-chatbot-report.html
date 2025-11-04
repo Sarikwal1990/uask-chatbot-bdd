@@ -3,18 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <title>AI Chatbot Test Report</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
       body { font-family: Arial, sans-serif; padding: 20px; background: #f8f9fa; }
-      table { width: 100%; border-collapse: collapse; }
-      th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+      table { width: 100%; border-collapse: collapse; margin-top:20px; }
+      th, td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
       th { background: #343a40; color: #fff; }
       tr:nth-child(even) { background: #f2f2f2; }
       span { padding: 2px 4px; border-radius: 4px; }
+      .chart-container { width: 250px; margin-bottom: 20px; }
     </style>
   </head>
+
   <body>
     <h2>AI Chatbot Test Report</h2>
     <p><strong>Benchmark:</strong> 30%</p>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+      <canvas id="passFailChart"></canvas>
+    </div>
+
     <table>
       <tr>
         <th>Prompt</th>
@@ -27,30 +39,44 @@
       
       <tr>
         <td>How to get an Emirates ID?</td>
-        <td>Step-by-Step Guide: How to Get an Emirates ID  Obtaining an Emirates ID is a mandatory process for all UAE citizens and residents. The Emirates ID is your official identification and is required for accessing government services, opening bank accounts, signing contracts, and more. Below is a clear, step-by-step guide to help you through the process:  1. Ensure You Have a Valid UAE Residence Visa   You must have a valid UAE residence visa before you can apply for an Emirates ID. This is a strict requirement for expatriate residents2.  2. Prepare the Required Documents  The documents you need may vary depending on your nationality and age, but generally include:   Original passport  Valid UAE residence visa (for expatriates)  Birth certificate (for children)  Passport-sized photographs  Supporting documents (e.g., marriage certificate, if applicable)  Ensure all documents are original and valid. Photocopies may be accepted if attested by a notary public4.  3. Complete the Application  You have two main options:   Online:  Visit the Federal Authority for Identity, Citizenship, Customs and Ports Security (ICP) website or use the ICP mobile app to fill out the application form123.  Typing Centre:  Visit an accredited typing centre, where staff will help you complete the application23.  4. Pay the Application Fee   Pay the required fee online or at the typing centre. The fee depends on the validity period of your visa and the type of application (new, renewal, or replacement)2.  5. Biometric Data Collection   First-time applicants (and some renewals) must visit an ICP service centre to provide biometric data, including fingerprints and a photograph23.  You will be notified of your appointment after submitting your application.  6. Track Your Application   Use your application number to track the status of your Emirates ID on the ICP website or app13.  7. Collect Your Emirates ID   Once your application is approved, you will receive an SMS notification.  Collect your Emirates ID from the designated Emirates Post office, or it may be delivered to your registered address23.  You must collect your card within 90 days of notification3.  Additional Notes   If you need your Emirates ID urgently, the ICP offers a “Fawri” express service for UAE and GCC nationals (and for expatriates in case of replacement), with an additional fee1.  Always carry your Emirates ID with you, as it is required for many official transactions and services12.  If your Emirates ID is lost, stolen, or damaged, report it immediately and apply for a replacement1.  References  1: UAE Government: Emirates ID – Application Process, Features, and FAQs 
-2: First Abu Dhabi Bank: Expat Guide – Everything You Need to Know About the Emirates ID 
-3: Shuraa: Emirates ID Application and Requirements Guide (2025) 
-4: Shuraa: Emirates ID Requirements – Documents and Procedures   If you need more specific guidance (for example, for children, newborns, or special cases), please let me know your situation, and I can provide tailored instructions.    Sources  Ask  Explain    </td>
+        <td>Step-by-Step Guide: How to Get an Emirates ID  The Emirates ID is a mandatory identification card for all UAE citizens and residents. It is essential for accessing government services, opening bank accounts, signing contracts, and more. Below is a clear, step-by-step guide to obtaining your Emirates ID, based strictly on the latest official and reputable sources.  1. Ensure You Have a Valid UAE Residence Visa   You must have a valid UAE residence visa before applying for an Emirates ID. This is a non-negotiable requirement for expatriates2.  2. Prepare the Required Documents  The documents you need depend on your status:  Applicant Type  Required Documents   UAE Nationals Passport, Family Book (Khulasat Al Qaid), Passport-size photo  GCC Nationals Valid Passport, Valid GCC ID, Proof of residency, Passport-size photo  Expatriates Valid Passport with residence permit, Passport-size photo, Proof of residence  Children (<15 yrs) Birth certificate, Passports of both parents, Passport-size photo of the child     Proof of residence can include a tenancy contract or utility bill3.  3. Submit Your Application  You have two main options:   Online:  Apply through the Federal Authority for Identity, Citizenship, Customs and Ports Security (ICP) website or mobile app.  In Person:  Visit an accredited typing centre or an Amer Centre (in Dubai) for assistance with the application form123.  4. Visit an ICP Service Centre for Biometrics   After submitting your application, you may need to visit an ICP service centre to provide biometric data (fingerprints and photograph). You will be notified if this is required12.  5. Pay the Application Fee   Fees vary depending on the validity period (typically 1, 2, or 3 years) and applicant category.  Payment can be made online or at the typing centre. For urgent processing, an extra fee applies3.  6. Track Your Application   You will receive an SMS notification about your application status.  You can also track your Emirates ID application online through the ICP website12.  7. Collect Your Emirates ID   Once your application is approved, you will receive an SMS with collection details.  Collect your Emirates ID from the designated Emirates Post office or, in some cases, it may be delivered to your registered address23.  Additional Tips   The standard processing time is typically 24 hours to 5 days, but urgent services (“Fawri”) are available for UAE and GCC nationals for an extra fee13.  Always carry your Emirates ID with you, as it is required for many official transactions in the UAE12.  References  1: Official UAE Government Guide – Emirates ID Application Process, Biometrics, Fees, Urgent Service 
+2: First Abu Dhabi Bank Expat Guide – Emirates ID Requirements and Steps 
+3: Amer Centre Dubai – Required Documents, Step-by-Step Application, Fees   If you need more details about specific cases (such as renewal, replacement, or for children), or have questions about the online application, please let me know!    Sources  Ask  Explain    </td>
         <td><span style="color:green;font-weight:bold">emirates id</span>, <span style="color:green;font-weight:bold">renew</span>, <span style="color:red;font-weight:bold">uae pass</span></td>
         <td>emirates id, renew</td>
-        <td>76.8%</td>
+        <td>75.8%</td>
         <td style="color:green">
           PASS
         </td>
       </tr>
       <tr>
         <td>كيف يمكنني تجديد بطاقة الهوية الإماراتية؟</td>
-        <td>Step-by-Step Guide: How to Get an Emirates ID  Obtaining an Emirates ID is a mandatory process for all UAE citizens and residents. The Emirates ID is your official identification and is required for accessing government services, opening bank accounts, signing contracts, and more. Below is a clear, step-by-step guide to help you through the process:  1. Ensure You Have a Valid UAE Residence Visa   You must have a valid UAE residence visa before you can apply for an Emirates ID. This is a strict requirement for expatriate residents2.  2. Prepare the Required Documents  The documents you need may vary depending on your nationality and age, but generally include:   Original passport  Valid UAE residence visa (for expatriates)  Birth certificate (for children)  Passport-sized photographs  Supporting documents (e.g., marriage certificate, if applicable)  Ensure all documents are original and valid. Photocopies may be accepted if attested by a notary public4.  3. Complete the Application  You have two main options:   Online:  Visit the Federal Authority for Identity, Citizenship, Customs and Ports Security (ICP) website or use the ICP mobile app to fill out the application form123.  Typing Centre:  Visit an accredited typing centre, where staff will help you complete the application23.  4. Pay the Application Fee   Pay the required fee online or at the typing centre. The fee depends on the validity period of your visa and the type of application (new, renewal, or replacement)2.  5. Biometric Data Collection   First-time applicants (and some renewals) must visit an ICP service centre to provide biometric data, including fingerprints and a photograph23.  You will be notified of your appointment after submitting your application.  6. Track Your Application   Use your application number to track the status of your Emirates ID on the ICP website or app13.  7. Collect Your Emirates ID   Once your application is approved, you will receive an SMS notification.  Collect your Emirates ID from the designated Emirates Post office, or it may be delivered to your registered address23.  You must collect your card within 90 days of notification3.  Additional Notes   If you need your Emirates ID urgently, the ICP offers a “Fawri” express service for UAE and GCC nationals (and for expatriates in case of replacement), with an additional fee1.  Always carry your Emirates ID with you, as it is required for many official transactions and services12.  If your Emirates ID is lost, stolen, or damaged, report it immediately and apply for a replacement1.  References  1: UAE Government: Emirates ID – Application Process, Features, and FAQs 
-2: First Abu Dhabi Bank: Expat Guide – Everything You Need to Know About the Emirates ID 
-3: Shuraa: Emirates ID Application and Requirements Guide (2025) 
-4: Shuraa: Emirates ID Requirements – Documents and Procedures   If you need more specific guidance (for example, for children, newborns, or special cases), please let me know your situation, and I can provide tailored instructions.    Sources  Ask  Explain    </td>
-        <td><span style="color:red;font-weight:bold">تجديد</span>, <span style="color:red;font-weight:bold">بطاقة الهوية</span>, <span style="color:red;font-weight:bold">الإمارات</span></td>
-        <td>-</td>
-        <td>41.4%</td>
+        <td>دليل خطوة بخطوة لتجديد بطاقة الهوية الإماراتية  تجديد بطاقة الهوية الإماراتية هو إجراء إلزامي لجميع المواطنين والمقيمين في دولة الإمارات. يجب تجديد البطاقة خلال 30 يومًا من تاريخ انتهاء صلاحيتها لتجنب الغرامات المالية. فيما يلي خطوات التجديد بالتفصيل:  1. تقديم طلب التجديد   يمكنك تقديم طلب التجديد عبر إحدى القنوات التالية:  الموقع الإلكتروني للهيئة الاتحادية للهوية والجنسية والجمارك وأمن المنافذ (ICP).  التطبيق الذكي للهيئة (متوفر على متاجر Google Play، Apple Store، Huawei).  مراكز الطباعة المعتمدة في الدولة1234.   2. تجهيز الوثائق المطلوبة  عادةً ستحتاج إلى:   صورة من بطاقة الهوية الحالية (الوجهين الأمامي والخلفي).  صورة جواز السفر ساري المفعول.  صورة تأشيرة الإقامة (للمقيمين).  صورة شخصية حديثة (لا يتجاوز تاريخها 3 أشهر)4.  3. دفع الرسوم   رسوم التجديد للمقيمين: 100 درهم عن كل سنة صلاحية (تتوافق مع مدة الإقامة).  رسوم تقديم الطلب: 70 درهم عبر مركز الطباعة أو 40 درهم عبر الموقع الإلكتروني.  في حال الرغبة في خدمة عاجلة "فوري"، تضاف رسوم 150 درهم4.  غرامة التأخير: 20 درهم عن كل يوم تأخير، بحد أقصى 1000 درهم4.  4. تحديث البيانات الحيوية (إن لزم)   قد يُطلب منك تحديث بياناتك البيومترية (البصمة والصورة) عبر زيارة أحد مراكز سعادة المتعاملين التابعة للهيئة، خاصة إذا كان هناك تغيير في البيانات أو حسب الفئة العمرية4.  5. استلام البطاقة الجديدة   بعد إتمام الطلب والدفع، ستتلقى رسالة نصية من الهيئة بموعد ومكان استلام البطاقة.  يمكنك استلام البطاقة من مكتب البريد أو اختيار توصيلها إلى عنوانك أو مقر عملك4.  6. ملاحظات هامة   يجب تجديد البطاقة خلال 30 يومًا من انتهاء الصلاحية لتجنب الغرامات.  الهيئة ترسل عادةً إشعارًا عبر رسالة نصية قبل انتهاء صلاحية البطاقة.  في حال فقدان أو تلف البطاقة، يجب الإبلاغ فورًا واتباع إجراءات إصدار بدل فاقد أو تالف.  بعض الفئات (مثل كبار السن فوق 70 عامًا أو مرضى الأمراض المعدية) قد تُعفى من غرامات التأخير عند تقديم المستندات اللازمة4.  المصادر  1: خدمة تجديد بطاقة الهوية - الهيئة الاتحادية للهوية والجنسية 
+2: معلومات عن بطاقة الهوية الإماراتية - بوابة حكومة الإمارات 
+3: تجديد بطاقة الهوية الدبلوماسية - وزارة الخارجية 
+4: دليل تجديد بطاقة الهوية الإماراتية - المنطقة الحرة لمدينة الشارقة للنشر   إذا كنت بحاجة إلى شرح لأي خطوة أو لديك حالة خاصة (مثل فقدان البطاقة أو وجود إعفاء من الغرامات)، يرجى توضيح ذلك لأقدم لك تفاصيل مخصصة.    Sources  Ask  Explain    </td>
+        <td><span style="color:green;font-weight:bold">تجديد</span>, <span style="color:green;font-weight:bold">بطاقة الهوية</span>, <span style="color:green;font-weight:bold">الإمارات</span></td>
+        <td>تجديد, بطاقة الهوية, الإمارات</td>
+        <td>78.4%</td>
         <td style="color:green">
           PASS
         </td>
       </tr>
     </table>
+
+    <script>
+      const ctx = document.getElementById('passFailChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Pass (100.00%)', 'Fail (0.00%)'],
+          datasets: [{
+            data: [2, 0],
+            backgroundColor: ['#28a745', '#dc3545']
+          }]
+        }
+      });
+    </script>
+
   </body>
   </html>

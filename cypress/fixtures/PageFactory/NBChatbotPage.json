@@ -1,3 +1,4 @@
 {
-    "Ask Anything Textbox": "#chat-input"
+    "Ask Anything Textbox": "#chat-input",
+    "New Chat Button": "#sidebar-new-chat-button div.text-body-primary"
 }

@@ -18,9 +18,18 @@ Cypress.Commands.add("writeAIReport", () => {
 /**
  * Generate AI HTML report
  */
+
 Cypress.Commands.add("generateAIChatReport", () => {
   const benchmark = Cypress.env("benchmarkScore");
   let rows = "";
+
+  // Calculate Pass / Fail numbers
+  const totalTests = aiTestResults.length;
+  const passedTests = aiTestResults.filter(r => r.score >= benchmark * 100).length;
+  const failedTests = totalTests - passedTests;
+
+  const passPercent = ((passedTests / totalTests) * 100).toFixed(2);
+  const failPercent = ((failedTests / totalTests) * 100).toFixed(2);
 
   aiTestResults.forEach(r => {
     const matchedSet = new Set(r.matchedKeywords.map(k => k.toLowerCase()));
@@ -50,18 +59,30 @@ Cypress.Commands.add("generateAIChatReport", () => {
   <head>
     <meta charset="UTF-8">
     <title>AI Chatbot Test Report</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
       body { font-family: Arial, sans-serif; padding: 20px; background: #f8f9fa; }
-      table { width: 100%; border-collapse: collapse; }
-      th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+      table { width: 100%; border-collapse: collapse; margin-top:20px; }
+      th, td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
       th { background: #343a40; color: #fff; }
       tr:nth-child(even) { background: #f2f2f2; }
       span { padding: 2px 4px; border-radius: 4px; }
+      .chart-container { width: 250px; margin-bottom: 20px; }
     </style>
   </head>
+
   <body>
     <h2>AI Chatbot Test Report</h2>
     <p><strong>Benchmark:</strong> ${benchmark * 100}%</p>
+
+    <!-- Pie Chart -->
+    <div class="chart-container">
+      <canvas id="passFailChart"></canvas>
+    </div>
+
     <table>
       <tr>
         <th>Prompt</th>
@@ -73,11 +94,27 @@ Cypress.Commands.add("generateAIChatReport", () => {
       </tr>
       ${rows}
     </table>
+
+    <script>
+      const ctx = document.getElementById('passFailChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Pass (${passPercent}%)', 'Fail (${failPercent}%)'],
+          datasets: [{
+            data: [${passedTests}, ${failedTests}],
+            backgroundColor: ['#28a745', '#dc3545']
+          }]
+        }
+      });
+    </script>
+
   </body>
   </html>`;
 
   cy.writeFile("cypress/reports/ai-chatbot-report.html", html);
 });
+
 
 
 /**

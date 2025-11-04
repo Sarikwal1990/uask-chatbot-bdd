@@ -26,7 +26,7 @@ Then("Run all AI prompt tests from test data", () => {
 
     cy.wrap(testPrompts).each((testCase) => {
       cy.log(`Running prompt: "${testCase.prompt}"`);
-
+      cy.get("#sidebar-new-chat-button div.text-body-primary").click({force:true});
       cy.get("#chat-input").should("be.visible").clear().type(`${testCase.prompt}{enter}`);
       cy.wait(50000); // wait for bot response
 
