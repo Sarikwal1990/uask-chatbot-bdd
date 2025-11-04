@@ -9,7 +9,8 @@
     "cy:run": "start-server-and-test start:backend http://localhost:8000 \"cypress run && npm run stop:backend\"",
     "cy:open": "start-server-and-test start:backend http://localhost:8000 \"cypress open && npm run stop:backend\"",
     "cy:ui": "npm run cy:open",
-    "cy:headless": "npm run cy:run"
+    "cy:headless": "npm run cy:run",
+    "cy:mobile": "start-server-and-test start:backend http://localhost:8000 \"cypress run --config viewportWidth=390,viewportHeight=844\""
   },
   "keywords": [],
   "author": "",

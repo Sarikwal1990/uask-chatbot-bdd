@@ -4,9 +4,28 @@ let aiTestResults = [];
 /**
  * Store AI test result
  */
+function escapeHTML(str) {
+  if (!str) return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 Cypress.Commands.add("storeAIResult", (result) => {
   aiTestResults.push(result);
+
+  console.table([{
+    Prompt: result.prompt,
+    Score: `${result.score}%`,
+    Benchmark: `${Cypress.env("benchmarkScore") * 100}%`,
+    Status: result.status,
+    "Matched Keywords": result.matchedKeywords.join(", ") || "-"
+  }]);
 });
+
 
 /**
  * Write AI JSON report
@@ -43,8 +62,8 @@ Cypress.Commands.add("generateAIChatReport", () => {
 
     rows += `
       <tr>
-        <td>${r.prompt}</td>
-        <td>${r.actualResponse}</td>
+        <td>${escapeHTML(r.prompt)}</td>
+        <td>${escapeHTML(r.actualResponse)}</td>
         <td>${highlightedKeywords || "-"}</td>
         <td>${r.matchedKeywords.join(", ") || "-"}</td>
         <td>${r.score}%</td>

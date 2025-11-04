@@ -1,3 +1,4 @@
+// cypress/integration/Testcases/BDD/StepDefinitions/Validationstepdefinition.js
 import { parseVariableValue } from "../../../../../utils/utility";
 
 const {
@@ -26,17 +27,27 @@ Then("Run all AI prompt tests from test data", () => {
 
     cy.wrap(testPrompts).each((testCase) => {
       cy.log(`Running prompt: "${testCase.prompt}"`);
-      cy.get("#sidebar-new-chat-button div.text-body-primary").click({force:true});
-      cy.get("#chat-input").should("be.visible").clear().type(`${testCase.prompt}{enter}`);
-      cy.wait(50000); // wait for bot response
 
-      cy.get('#response-content-container', { timeout: 90000 })
-        .should('exist')
+      // open new chat
+      cy.get("#sidebar-new-chat-button div.text-body-primary").click({ force: true });
+
+      // ensure input visible and send prompt
+      cy.get("#chat-input").should("be.visible").clear().type(`${testCase.prompt}{enter}`);
+
+      cy.wait(50000); // wait for processing to start
+      // wait for a response element to appear — avoid fixed long waits
+      cy.get("#response-content-container", { timeout: 500000 })
+        .should("exist")
         .scrollIntoView()
-        .should('be.visible')
+        .should("be.visible")
         .invoke("text")
         .then((actualResponse) => {
 
+
+          // Assert input cleared after send
+          cy.get("#chat-input").should("have.value", "");
+
+          // Call backend scorer (semantic + keyword)
           cy.checkAIResponse(testCase.expectedMeaning, actualResponse, testCase.keywords)
             .then(score => {
               const numericScore = Number((score.final_score * 100).toFixed(2));
@@ -53,19 +64,18 @@ Then("Run all AI prompt tests from test data", () => {
 
               cy.storeAIResult(record);
 
-              // Assert
+              // Assert main pass criteria
               expect(score.final_score >= benchmark, `AI response for prompt: "${testCase.prompt}"`).to.be.true;
 
+              // On fail, capture screenshot for debugging
               if (numericScore < benchmark * 100) {
                 cy.screenshot(testCase.prompt.replace(/[^a-zA-Z0-9]/g, "_"));
               }
             });
         });
 
-      cy.wait(1000);
+      // short pause to let UI settle
+      cy.wait(800);
     });
   });
 });
-
-
-
