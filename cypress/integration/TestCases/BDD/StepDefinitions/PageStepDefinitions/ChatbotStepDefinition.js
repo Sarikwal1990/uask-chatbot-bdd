@@ -1,5 +1,6 @@
-// cypress/integration/Testcases/BDD/StepDefinitions/Validationstepdefinition.js
+// cypress/integration/Testcases/BDD/StepDefinitions/PageStepDefinitions/ChatbotStepDefinition.js
 import { parseVariableValue } from "../../../../../utils/utility";
+import PageHelper from "../../../../../utils/PageHelper.js";
 
 const {
   Given,
@@ -7,8 +8,28 @@ const {
   Then,
 } = require("@badeball/cypress-cucumber-preprocessor");
 
+const pageHelper = new PageHelper();
+
 //Importing and renaming the variables from hook.js
 const { testDataMap, pageDataMap } = require("../GlobalStepDefinitions/hooks");
+
+// Login to the application with valid credentials
+Then(
+  /^the user is logged in to the application with valid credentials$/,
+  () => {
+    // Login using valid credentials from environment variables and cucumber hooks implementation
+    cy.log("Logging in to the application using valid credentials from environment variables");
+  }
+);
+
+// Trigger all AI prompts
+Then(
+  /^the user triggers all AI prompts$/,
+  () => {
+    // Triggering all AI prompts from TestData/ChatbotPrompts.json
+    cy.log("Triggering all AI prompts from ChatbotPrompts");
+  }
+);
 
 // Verify that URL contains "Test String"
 Then(/^Verify that URL contains "([^"]*)"$/, function (value) {
@@ -17,7 +38,7 @@ Then(/^Verify that URL contains "([^"]*)"$/, function (value) {
 });
 
 // Run AI prompt tests from test data
-Then("Run all AI prompt tests from test data", () => {
+Then("all AI prompt tests should run successfully using the test data", () => {
   const benchmark = Cypress.env("benchmarkScore");
 
   cy.fixture("TestData/ChatbotPrompts.json").as("chatData");
@@ -29,22 +50,24 @@ Then("Run all AI prompt tests from test data", () => {
       cy.log(`Prompt: "${testCase.prompt}"`);
 
       // Start fresh chat
-      cy.get("#sidebar-new-chat-button div.text-body-primary").click({ force: true });
+      map = pageHelper.getPageMap(pageDataMap, "NB Chatbot Page");
+      pageHelper.getElement(map.get("New Chat Button")).click({ force: true });
 
-      cy.get("#chat-input")
+      pageHelper.getElement(map.get("Ask Anything Textbox"))
         .should("be.visible")
         .clear()
         .type(`${testCase.prompt}{enter}`);
 
-      cy.get('.overflow-x-auto.buttons').should('be.visible');
-      
-      cy.get("#response-content-container", { timeout: 500000 })
+      pageHelper.getElement(map.get("Like/Dislike Buttons")).should('be.visible');
+
+      pageHelper.getElement(map.get("Response Content"))
         .should("exist")
         .scrollIntoView()
         .invoke("text")
         .then((actualResponse) => {
 
-          cy.get("#chat-input").should("have.value", "");
+          // Verify the input textbox is cleared after submission
+          pageHelper.getElement(map.get("Ask Anything Textbox")).should("have.value", "");
 
           cy.checkAIResponse(testCase.expectedMeaning, actualResponse, testCase.keywords)
             .then(score => {
@@ -52,7 +75,7 @@ Then("Run all AI prompt tests from test data", () => {
               const numericScore = Number((score.final_score * 100).toFixed(2));
               const passed = numericScore >= benchmark * 100;
 
-              // ✅ Push results to report collector
+              // Push results to report collector
               const record = {
                 prompt: testCase.prompt,
                 expectedKeywords: testCase.keywords,
@@ -68,7 +91,7 @@ Then("Run all AI prompt tests from test data", () => {
 
               cy.storeAIResult(record);
 
-              // ✅ Log result instead of failing the test flow
+              // Log result instead of failing the test flow
               if (!passed) {
                 cy.log(`Benchmark not met: "${testCase.prompt}" (${numericScore}%)`);
                 cy.screenshot(testCase.prompt.replace(/[^a-zA-Z0-9]/g, "_"));

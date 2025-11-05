@@ -1,4 +1,7 @@
 {
+    "New Chat Button": "#sidebar-new-chat-button div.text-body-primary",
     "Ask Anything Textbox": "#chat-input",
-    "New Chat Button": "#sidebar-new-chat-button div.text-body-primary"
+    "Like/Dislike Buttons": ".overflow-x-auto.buttons",
+    "Response Content": "#response-content-container"
+    
 }
