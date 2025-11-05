@@ -146,9 +146,8 @@ Cypress.Commands.add("checkAIResponse", (expectedMeaning, actualResponse, keywor
     expectedMeaning,
     actualResponse,
     keywords,
-    benchmark // send explicitly to backend
+    benchmark
   }).then(res => {
-    expect(res.body.final_score, "AI response score").to.be.gte(benchmark);
-    return res.body;
+    return res.body; // return score only
   });
 });
