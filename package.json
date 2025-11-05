@@ -10,7 +10,8 @@
     "cy:open": "start-server-and-test start:backend http://localhost:8000 \"cypress open && npm run stop:backend\"",
     "cy:ui": "npm run cy:open",
     "cy:headless": "npm run cy:run",
-    "cy:mobile": "start-server-and-test start:backend http://localhost:8000 \"cypress run --config viewportWidth=390,viewportHeight=844\""
+    "cy:mobile": "start-server-and-test start:backend http://localhost:8000 \"cypress run --config viewportWidth=390,viewportHeight=844\"",
+    "cy:run:chrome": "start-server-and-test start:backend http://localhost:8000 \"cypress run --headed --browser chrome && npm run stop:backend\""
   },
   "keywords": [],
   "author": "",
@@ -28,7 +29,8 @@
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": [
-      "cypress/integration/Testcases/BDD/StepDefinitions/GlobalStepDefinitions/*.js"
+      "cypress/integration/Testcases/BDD/StepDefinitions/GlobalStepDefinitions/*.js",
+      "cypress/integration/Testcases/BDD/StepDefinitions/PageStepDefinitions/*.js"
     ]
   }
 }

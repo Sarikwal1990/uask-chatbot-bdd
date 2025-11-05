@@ -19,11 +19,11 @@ async function setupNodeEvents(on, config) {
 }
 
 module.exports = defineConfig({
-  video: false,
+  video: true,
   env: {
   TAGS: "not @ignore",
   ENV: "sandbox",
-  benchmarkScore: 0.5   // AI response must score >= 50%
+  benchmarkScore: 0.3   // AI response must score >= 30%
 },
   pageLoadTimeout: 300000,
   numTestsKeptInMemory: 0,

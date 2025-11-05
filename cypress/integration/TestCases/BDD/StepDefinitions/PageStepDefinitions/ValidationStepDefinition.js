@@ -8,7 +8,7 @@ const {
 } = require("@badeball/cypress-cucumber-preprocessor");
 
 //Importing and renaming the variables from hook.js
-const { testDataMap, pageDataMap } = require("./hooks");
+const { testDataMap, pageDataMap } = require("../GlobalStepDefinitions/hooks");
 
 // Verify that URL contains "Test String"
 Then(/^Verify that URL contains "([^"]*)"$/, function (value) {
