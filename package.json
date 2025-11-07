@@ -13,7 +13,6 @@
     "cy:mobile": "start-server-and-test start:backend http://localhost:8000 \"cypress run --config viewportWidth=390,viewportHeight=844\"",
     "cy:run:chrome": "start-server-and-test start:backend http://localhost:8000 \"cypress run --headed --browser chrome && npm run stop:backend\""
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",

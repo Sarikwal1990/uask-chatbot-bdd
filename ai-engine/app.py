@@ -25,7 +25,6 @@ app = FastAPI(title="AI Scorer API", version="2.0")
 class Input(BaseModel):
     expectedMeaning: str
     actualResponse: str
-    keywords: list[str] = []     # Kept for backward compatibility, ignored internally
     benchmark: float = 0.0       # Always passed from Cypress
 
 # ------------------------------------------------------------
@@ -53,7 +52,6 @@ def compute_score(input: Input):
 
         # Fill in backward compatibility placeholders
         result.setdefault("final_score", 0)
-        result.setdefault("matchedKeywords", [])
         result.setdefault("benchmark", input.benchmark)
 
         logger.info("Scoring result: %s", result)
@@ -65,7 +63,6 @@ def compute_score(input: Input):
             status_code=500,
             content={
                 "final_score": 0,
-                "matchedKeywords": [],
                 "error": str(e),
                 "message": "Internal scoring error"
             }

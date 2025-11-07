@@ -126,11 +126,9 @@ def score_response(expected_meaning: str, actual: str, benchmark: float = 0.3):
         logger.error("Missing expected or actual response. Returning zero scores.")
         return {
             "semantic": 0.0,
-            "keyword_score": 1.0,   # backward compatibility
             "hallucination_flag": False,
             "broken_html_flag": False,
             "final_score": 0.0,
-            "matchedKeywords": [],
             "benchmark": benchmark
         }
 
@@ -165,10 +163,8 @@ def score_response(expected_meaning: str, actual: str, benchmark: float = 0.3):
     # --- Structured Result ---
     return {
         "semantic": round(semantic, 3),
-        "keyword_score": 1.0,   # maintained for backward compatibility
         "hallucination_flag": bool(hallucination),
         "broken_html_flag": bool(broken_html),
         "final_score": round(final_score, 3),
-        "matchedKeywords": [],  # no longer used
         "benchmark": benchmark
     }

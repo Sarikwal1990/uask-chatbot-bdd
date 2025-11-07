@@ -109,8 +109,7 @@ The test data supports both English and Arabic prompts. You can configure or ext
   "aiChatbotTests": [
     {
       "prompt": "كيف يمكنني تجديد بطاقة الهوية الإماراتية؟",
-      "expectedMeaning": "المستخدم يريد معرفة كيفية تجديد بطاقة الهوية الإماراتية",
-      "keywords": ["تجديد", "بطاقة الهوية", "الإمارات"]
+      "expectedMeaning": "المستخدم يريد معرفة كيفية تجديد بطاقة الهوية الإماراتية"
     }
   ]
 }
@@ -119,8 +118,6 @@ The test data supports both English and Arabic prompts. You can configure or ext
 prompt → The user input to the chatbot
 
 expectedMeaning → What the chatbot is expected to understand
-
-keywords → Keywords to match in the response
 
 Reports and Screenshots
 
@@ -161,7 +158,7 @@ Pie chart of pass/fail ratio
 
 Prompt-wise score
 
-Highlighted expected keywords (green = matched, red = missing)
+Hallucination
 
 Actual response
 
@@ -174,7 +171,6 @@ Body:
 {
     "expectedMeaning": "...",
     "actualResponse": "...",
-    "keywords": ["..."],
     "benchmark": 0.3
 }
 
