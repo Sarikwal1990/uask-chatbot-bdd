@@ -1,13 +1,13 @@
 UAsk Chatbot BDD Automation
 
-This repository contains BDD-style Cypress automation for testing the AI Chatbot application. The tests include multilingual support (English and Arabic) and AI response validation using semantic scoring.
+This repository contains BDD-style Cypress automation for testing the AI Chatbot application. The tests include multilingual support (English and Arabic) and AI response validation using semantic scoring only (keywords are no longer used).
 
 Project Structure
 uask-chatbot-bdd/
 │
 ├─ ai-engine/
 │  ├─ app.py           # FastAPI backend for AI response scoring
-│  └─ scorer.py        # Semantic + keyword + hallucination scoring logic
+│  └─ scorer.py        # Semantic + hallucination + HTML detection scoring logic
 │
 ├─ cypress/
 │  ├─ fixtures/
@@ -134,6 +134,26 @@ Failed test cases are captured as screenshots:
 
 cypress/screenshots/<spec_name>/<prompt>.png
 
+Logs
+
+All AI scoring and test execution logs are stored in the logs/ folder:
+
+logs/app.log      # General execution and scoring logs
+logs/scorer.log   # Detailed scoring calculations and semantic similarity results
+
+
+These logs provide:
+
+Traceability of each test execution
+
+Prompt-wise semantic scores
+
+AI backend response details
+
+Easier debugging and analysis
+
+Note: Keyword references are no longer used; only semantic scoring is logged and analyzed.
+
 
 HTML report includes:
 
@@ -161,9 +181,7 @@ Body:
 
 ai-engine/scorer.py computes:
 
-Semantic similarity (using multilingual SentenceTransformer)
-
-Keyword matching
+Semantic similarity (multilingual SentenceTransformer)
 
 Hallucination detection
 
@@ -177,8 +195,8 @@ Notes
 
 Default AI benchmark score: 30% (configurable in cypress.config.js under env.benchmarkScore)
 
-Clear cookies, local storage, and session storage before regression runs.
+Clear cookies, local storage, and session storage before regression runs
 
-Supports @CacheClear, @Regression, @NBLogin tags for selective execution.
+Supports @CacheClear, @Regression, @NBLogin tags for selective execution
 
-This README provides a complete guide to run your chatbot automation with Cypress + BDD.
+Proper log management is maintained for traceability across test execution
